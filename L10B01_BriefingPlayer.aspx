@@ -189,7 +189,8 @@
                 </div>--%>
                 <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4 col-sm-pull-7 col-md-pull-8" id="slidebar" style="height: 100%; z-index: 1">
 
-                    <a href="#" v-on:click="TestMethod()" id="List_UnWatchVideo_cmdUnWatchVideo_0" data-video-id="MsbBBx-3HyI" class="list-group-item video new"><span data-user-id="Publish_User" class="colaUser">Publish_Name</span>：<span class="video-topic">Doc_Topic</span></a>
+                    <a href="#" v-on:click="TestMethod('yzrUSzkLQNU')" id="List_UnWatchVideo_cmdUnWatchVideo_0" data-video-id="MsbBBx-3HyI" class="list-group-item video new">yzrUSzkLQNU</a>
+                    <a href="#" v-on:click="TestMethod()"  data-video-id="MsbBBx-3HyI" class="list-group-item video new"><span data-user-id="Publish_User" class="colaUser">Publish_Name</span>：<span class="video-topic">Doc_Topic</span></a>
                     <div class="well well-sm">
                         <div class="panel-group playlist-container" style="position: relative; z-index: 0">
                             <div class="list-group video-group">
@@ -251,6 +252,7 @@
             el: '#app',
             data: {
                 test: '這是本頁資料',
+                videoid:'',
                 /*
                  * myVideoRow["Video_Id"] = "MsbBBx-3HyI";
        myVideoRow["Publish_User"] = "Publish_User";
@@ -277,15 +279,23 @@
                 ]
             },
             methods: {
-                TestMethod() {
-                    // console.log(id);
-                    player.loadVideo('MsbBBx-3HyI');
-                    sessionStorage.setItem('key', 'MsbBBx-3HyI');
+                TestMethod(videoid) {
+                    console.log('TestMethod', TestMethod);
+                    player.loadVideoById(TestMethod);
+                    // sessionStorage.setItem('key', 'MsbBBx-3HyI');
                 },
                 onYouTubePlayerAPIReady(videoid) {
-                    console.log(videoid);
+                    console.log('AA', videoid);
+                    var self = this;
+                    if (self.videoid != '') {
+                        self.videoid = videoid;
+                        player.loadVideoById(videoid);
+                        return;
+                    }
                     videosQueuedCount = 1;
                     var vars = {};
+                    
+                    self.videoid = videoid;
                     vars =  {
                         autoplay: 0,
                         enablejsapi: 0,
