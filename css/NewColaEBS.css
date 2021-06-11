@@ -1,0 +1,301 @@
+﻿/*程式代碼的 Css Style*/
+.ProgramId
+{
+	border-color: #ffe0a2;
+	padding: 0px;
+	background-image: url(../../A08A_WholeSale/ImagesProg/page-back02.gif);
+	border-style:solid;
+	border-collapse:collapse;
+}
+
+/*操作說明的 Css Style*/
+.Help
+{
+    COLOR: #000000;
+    FONT-FAMILY: Courier New;
+    FONT-SIZE: 13px;
+	LETTER-SPACING: 1px
+}
+
+/*服務說明的 Css Style*/
+.Biz
+{
+    COLOR: #000000;
+    FONT-FAMILY: Courier New;
+    FONT-SIZE: 13px;
+	LETTER-SPACING: 1px
+}
+
+
+/*深藍框淺藍底的標題 Css Style*/
+.TitleBox
+{
+	background-color:#DAEFFC;
+	color: #0000FF;
+    FONT-SIZE: small;
+    border-collapse:collapse;
+
+    border:2px solid #004DEC;
+    height:30px;
+    width:100%;
+}
+/*深藍框白色底的標題 Css Style*/
+.TitleBoxWhite
+{
+	background-color:#FFFFFF;
+	color: #0000FF;
+    FONT-SIZE: small;
+    border-collapse:collapse;
+
+    border:2px solid #004DEC;
+    height:30px;
+    width:100%;
+}
+
+/*有查詢條件的外框Table Css Style*/
+.SearchBox
+{
+	border:0;
+	background-color: #004DEC;
+	padding: 4px;
+	width:100%;
+}
+
+/*查詢條件的Table Css Style*/
+.Search
+{
+	border:0 hidden;
+	background-color: #FFFFFF;
+	font-size:10pt;
+	color:#0000FF;
+	height:40px;
+	width:100%;
+	padding: 2px;
+}
+/*綠色表格的 Css Style*/
+.Table
+{
+	border:0;
+	background-color: #339966;
+	padding: 4;
+}
+
+/*白色表格的 Css Style*/
+.TableLine
+{
+	border:0;
+	background-color: #FFFFFF;
+	padding: 4;
+	width:100%;
+}
+
+/*表格 Heading 部份的 Css Style*/
+.TableHeading
+{
+	background-color:#004DEC;
+	color:#FFFFFF;
+    FONT-FAMILY: Courier New;
+    /*FONT-SIZE: 13px;*/
+    font-size:13px;
+    TEXT-ALIGN: center;
+    border: #99ccff 1px solid;
+}
+
+/*表格 Data 部份的 Css Style*/
+.TableData
+{
+	background-color:#DAEFFC;
+    COLOR: #0000FF;
+    FONT-FAMILY: Courier New;
+    /*FONT-SIZE: 13px;*/
+    font-size:13px;
+    border:  #99ccff 1px solid;
+}
+.TableDataWhite
+{
+	background-color:#FFFFFF;
+    COLOR: #0000FF;
+    FONT-FAMILY: Courier New;
+    font-size:13px;
+    border:  #99ccff 1px solid;
+}
+.TableDataGray
+{
+	background-color:#FFFFFF;
+    COLOR: #333333;
+    FONT-FAMILY: Courier New;
+    font-size:13px;
+    border:  #99ccff 1px solid;
+}
+
+/*表格 Data 部份背景淺顏色的 Css Style
+.TableLight
+{
+    BACKGROUND-COLOR: #FFFFFF;
+    COLOR: black;
+    FONT-FAMILY: Courier New;
+    FONT-SIZE: 13px;
+}*/
+
+/*表格 Data 部份背景深顏色的 Css Style
+.TableDark
+{
+    BACKGROUND-COLOR: "#F8FED3";
+    COLOR: black;
+    FONT-FAMILY: Courier New;
+    FONT-SIZE: 13px;
+}*/
+
+/*輸入欄位的 Css Style*/
+Input
+{
+    FONT-FAMILY: Courier New;
+    FONT-SIZE: 13px;
+}
+
+/*DataGrid的 Css Style */
+.Grid
+{
+	font-family: Courier New;
+	 /*FONT-SIZE: 13px;*/
+    font-size:13px;
+	text-align:center;
+	color:Black;
+	border: #99ccff 1px solid;
+}
+
+/*DataGrid Heading 的 Css Style */
+.GridHeading
+{ 
+	background-color: #004DEC;
+    COLOR: White;
+    height:30px;
+    border: #99ccff 1px solid;
+    /*text-align:center;*/
+}
+
+/*DataGrid Item 的 Css Style */
+.GridItem
+{
+    COLOR: BLUE;
+    border: #99ccff 1px solid;
+    /*text-align:center;*/
+}
+/*DataGrid Item 的 Css Style */
+.GridItemGray
+{
+    COLOR: #333333;
+    border: #99ccff 1px solid;
+    /*text-align:center;*/
+}
+
+/*DataGrid Alternate 的 Css Style*/
+.GridAlternate
+{
+	background-color: #DAEFFC;
+    COLOR: BLUE;
+    border: #99ccff 1px solid;
+    /*text-align:center;*/
+}
+
+/*DataGrid Selected Item 的 Css Style*/
+.GridSelected
+{
+	background-color: #FFE1E1;
+    COLOR: BLUE;
+    border: #99ccff 1px solid;
+    /*text-align:center;*/
+}
+
+/*一般功能按鈕的 Css Style*/
+.Button
+{
+	font-size: 13px;
+	color: black;
+	font-family: 新細明體;
+	cursor:hand;
+}
+
+/*TextBox 的 Css Style*/
+.TextBox
+{
+    BORDER-RIGHT: #b4b4b4 1px solid;
+    BORDER-TOP: #b4b4b4 1px solid;
+    FONT-SIZE: 12px;
+    BORDER-LEFT: #b4b4b4 1px solid;
+    COLOR: #383838;
+    BORDER-BOTTOM: #b4b4b4 1px solid;
+    FONT-FAMILY: arial;
+    BACKGROUND-COLOR: #ffffff
+}
+
+/*要隱藏的TextBox 的 Css Style
+.TextBoxBorder
+{
+	border-style:none;
+	background-color:#ffffdd;
+	COLOR: #006600;
+}*/
+
+/*Panel的設定*/
+.Panel
+{
+	width:100%;
+	text-align:center;
+}
+/*Label的設定
+.Label
+{
+	color:#006600;
+	font-family:Courier New;
+	font-size:13px;
+}*/
+
+/* 表格內表格格式設定 */
+.InnerTable
+{
+    background-color:Transparent;
+    COLOR: #0000ff;
+    FONT-FAMILY: Courier New;
+    font-size:13px;
+    border-style:none;
+}
+
+.InputDate
+{
+	width:90px;
+}
+
+.AsLabel
+{
+	border:none;
+	background-color:Transparent;
+	color:Blue;
+}
+
+/* 覆蓋全部畫面的Overlay */
+.UpdateOverlay {
+    position: absolute;
+    background-color: #111;
+    
+    
+    filter: alpha(opacity=0);
+    opacity: 0.5;
+    -moz-opacity: 0.5;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    left:0;
+    top:0;
+}
+
+/* Loading的圖 */
+.UpdateLoading {
+  left:50%;
+  top:20%;
+  width:30px;
+  height:30px;
+  position:absolute;
+  color:Black;
+  background-image:url(/A000_HomePage/Images/ajax-loader.gif);
+}

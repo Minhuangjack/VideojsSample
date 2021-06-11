@@ -52,8 +52,8 @@ F:\Microsoft Visual\VideojsSample\bin\roslyn\VBCSCompiler.exe
 F:\Microsoft Visual\VideojsSample\bin\roslyn\VBCSCompiler.exe.config
 F:\Microsoft Visual\VideojsSample\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 F:\Microsoft Visual\VideojsSample\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-F:\Microsoft Visual\VideojsSample\obj\Debug\VideojsSample.csprojAssemblyReference.cache
 F:\Microsoft Visual\VideojsSample\obj\Debug\VideojsSample.csproj.CoreCompileInputs.cache
 F:\Microsoft Visual\VideojsSample\obj\Debug\VideojsSample.csproj.CopyComplete
 F:\Microsoft Visual\VideojsSample\obj\Debug\VideojsSample.dll
 F:\Microsoft Visual\VideojsSample\obj\Debug\VideojsSample.pdb
+F:\Microsoft Visual\VideojsSample\obj\Debug\VideojsSample.csproj.AssemblyReference.cache

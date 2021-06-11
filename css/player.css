@@ -1,0 +1,368 @@
+﻿/*#region 覆寫 bootstrap style */
+
+html, body{
+    font-size: 13px;
+    font-family: 'Courier New', Courier, 'Nimbus Mono L', monospace;    
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    font-family: 'Courier New', Courier, 'Nimbus Mono L', monospace;
+}
+
+/*#endregion */
+
+.loading {
+    display: none;    
+}
+
+    .loading .overlay {
+        z-index: 99999999;
+        border: none;
+        margin: 0px;
+        padding: 0px;
+        width: 100%;
+        height: 100%;
+        top: 0px;
+        left: 0px;
+        background-color: #666666;
+        filter: alpha(opacity=80);
+        -moz-opacity: 0.8;
+        -webkit-opacity: 0.8;
+        opacity: 0.8;
+        -khtml-opacity: 0.8;
+        cursor: wait;
+        position: fixed;
+    }
+
+    .loading .message {
+        z-index: 99999999;
+        position: fixed;
+        padding: 0px;
+        margin: 0px;
+        width: 30%;
+        top: 40%;
+        left: 35%;
+        text-align: center;
+        color: rgb(0, 0, 0);
+        cursor: wait;
+        background-color: #fff;
+        height: 50px;
+        line-height: 50px;
+        border: 2px solid #000;
+    }
+
+    .loading .message img{
+        vertical-align: middle;
+    }
+
+.progress-message {
+    z-index: 99999999;
+    border: none;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    top: 0px;
+    left: 0px;        
+    position: fixed;
+    color:#2fa4e7;    
+    text-align:center;
+    font-weight:bold;
+    display: none;            
+    background:url(Images/bg-gray.png) repeat;
+}
+
+.ui-icon {
+            /*background-color:transparent;*/
+            /*top:50%;
+            display: inline-block;*/
+            /*line-height: 1.2em;*/
+            /*top:50%;*/
+        }
+
+        .panel-heading .accordion-toggle .ui-icon-minus {
+            background-position: -37px -1px;
+        }
+
+        .panel-heading .accordion-toggle.collapsed .ui-icon-minus {
+            background-position: -1px -1px;
+        }
+
+        body {
+            min-width: 320px;
+        }
+
+        .container.topNavBar {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        /*#region 大綱列表 */
+
+        .chapter {
+            margin: 0;
+            background-color: #A2D9FF;
+        }
+
+            .chapter a {
+                /*background: url(../Images/sprite.png) 15px 13px no-repeat;*/
+                /*background: url(../Images/rsz_plus_grey.png) 12px 10px no-repeat;*/
+                background: url(../Images/plus_white.png) 12px 10px no-repeat;
+                display: block;
+                padding: 10px;
+                padding-left: 32px;
+                margin: 0;
+                color: #808080;
+                text-decoration: none;
+                font-weight: normal;
+                border-bottom: 1px solid #fff;
+            }
+
+            /*4FA7E3*/
+            /*87CEFF*/
+
+            .chapter:hover {
+                background: #4FA7E3;
+            }
+
+                .chapter:hover a {
+                    color: white;
+                }
+
+            .chapter.open {
+                background: #4FA7E3;
+            }
+
+                .chapter.open a {
+                    /*background-position: 13px -25px;*/
+                    background: url(../Images/minus.png) 10px 8px no-repeat;
+                    color: white;
+                }
+        /*.chapter + div { padding: 10px; }*/
+
+        /*************************************/
+
+        .ulSection {
+            list-style-type: none;
+            padding-left: 0;
+            /*float:left;*/
+        }
+
+            .ulSection li.section {
+                color: #666666;
+            }
+
+            .ulSection li a {
+                display: block;
+                padding-left: 40px;
+                /*float:left*/
+            }
+
+            .ulSection li.level3 a {
+                padding-left: 60px;
+            }
+
+            .ulSection li a:hover {
+                background-color: #dddddd;
+            }
+
+            .ulSection li.section a {
+                text-decoration: none;
+                color: #666666;
+                font-family: 'Courier New', Courier, 'Nimbus Mono L', monospace;
+            }
+
+                .ulSection li.section a:hover {
+                    color: #000;
+                }
+
+            .ulSection li.exam {
+                color: #008000;
+            }
+
+                .ulSection li.exam a {
+                    text-decoration: none;
+                    color: #008000;
+                }
+
+                    .ulSection li.exam a:hover {
+                        /*color:#008000;*/
+                        color: #005000;
+                    }
+
+        .read a {
+            background: url(Images/bullet-green.png) 20px 1px no-repeat;
+        }
+
+        .unread a {
+            background: url(Images/bullet-grey.png) 20px 1px no-repeat;
+        }
+
+        .reading {
+            background-color: #dddddd;
+        }
+
+            .reading a {
+                background: url(Images/bullet-yellow.png) 20px 1px no-repeat;
+            }
+
+        .read.reading a {
+            background: url(Images/bullet-green.png) 20px 1px no-repeat;
+        }
+
+        /*#endregion */
+
+.loading-bg{
+    background: url(/L10B_Briefing/Css/Images/ajax-loader-snack.gif) no-repeat;
+    background-position: 65% 50%;
+}
+
+.loading-snack{
+    background: url(/L10B_Briefing/Css/Images/ajax-loader-snack.gif) no-repeat;
+    /*background-position: 65% 50%;*/
+    padding-left: 20px;
+}
+
+/* Rating */
+.ratingStar {
+    font-size: 0pt;
+    width: 13px;
+    height: 12px;
+    margin: 0px;
+    padding: 0px;
+    cursor: pointer;
+    display: block;
+    background-repeat: no-repeat;
+}
+
+.filledRatingStar {
+    background-image: url(images/FilledStar.png);
+    width: 13px;
+    height: 12px;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+
+.halfRatingStar {
+    background-image: url(images/HalfStar.png);
+    width: 13px;
+    height: 12px;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+
+.emptyRatingStar {
+    background-image: url(images/EmptyStar.png);
+    width: 13px;
+    height: 12px;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+
+.savedRatingStar {
+    background-image: url(images/SavedStar.png);
+    width: 13px;
+    height: 12px;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+
+.player{
+    height: 500px;
+}
+
+.player video{
+    height: 500px;
+}
+
+.remove-padding{
+    padding-left:0;
+    padding-right:0;
+}
+
+.navbar-xs .navbar { min-height:28px; } 
+.navbar-xs .navbar .navbar-brand{ padding: 8px 8px;font-size: 16px;line-height: 18px; } 
+.navbar-xs .navbar .navbar-nav > li > a {  padding-top: 7px; padding-bottom: 7px; line-height: 20px; } 
+.navbar-sm .navbar { min-height:40px; } 
+.navbar-sm .navbar .navbar-brand{ padding: 12px 12px;font-size: 16px;line-height: 18px; } 
+.navbar-sm .navbar .navbar-nav > li > a {  padding-top: 12px; padding-bottom: 12px; line-height: 20px; }
+
+#txtVideoMemo{
+    display:inline;
+}
+
+/* 小螢幕拿掉固定播放器 */
+@media (max-width: 767px) {
+    #itemContainer {
+        /*position: static;*/
+    }    
+
+    .player {
+        height: 250px;
+    }
+
+    .player video{
+        height: 250px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px)
+{
+    #itemContainer {
+        /*width: 437px;*/
+        /*position:fixed;*/
+    }
+
+    .player {
+        height: 300px;
+    }
+
+    .player video{
+        height: 300px;
+    }
+
+    .navbar{
+        width: 950px;                  
+    }        
+}
+
+@media (min-width: 992px) and (max-width: 1199px)
+{
+    #itemContainer {
+        /*width: 647px;*/     
+        /*position:fixed;*/   
+    }
+
+    .player {
+        height: 400px;
+    }
+
+    .navbar{
+        width: 950px;                  
+    }    
+}
+
+
+@media (min-width: 1200px)
+{   
+    #itemContainer {
+        /*width: 780px;*/        
+        /*position:fixed;*/         
+    }
+
+    .navbar{
+        width: 1150px;        
+    }
+}

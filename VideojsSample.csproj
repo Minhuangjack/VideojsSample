@@ -67,16 +67,148 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\bootstrap-ie7.css" />
+    <Content Include="css\bootstrap-ie7.min.css" />
+    <Content Include="css\bootstrap-theme.css" />
+    <Content Include="css\bootstrap-theme.min.css" />
+    <Content Include="css\bootstrap.css" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\briefing-player.css" />
+    <Content Include="css\briefing-player.min.css" />
+    <Content Include="css\ColaEBS.css" />
+    <Content Include="css\ColaEBS.min.css" />
+    <Content Include="css\colorbox.css" />
+    <Content Include="css\Images\ajax-loader-indicator.gif" />
+    <Content Include="css\Images\ajax-loader-snack.gif" />
+    <Content Include="css\Images\ajax-loader.gif" />
+    <Content Include="css\Images\bg-gray.png" />
+    <Content Include="css\Images\bullet-green.png" />
+    <Content Include="css\Images\bullet-grey.png" />
+    <Content Include="css\Images\bullet-yellow.png" />
+    <Content Include="css\Images\controls.png" />
+    <Content Include="css\Images\delete.png" />
+    <Content Include="css\Images\EmptyStar.png" />
+    <Content Include="css\Images\FilledStar.png" />
+    <Content Include="css\Images\HalfStar.png" />
+    <Content Include="css\Images\heart-xs.png" />
+    <Content Include="css\Images\heart.png" />
+    <Content Include="css\Images\icon-close-circled.png" />
+    <Content Include="css\Images\icon-ios7-arrow-left-white.png" />
+    <Content Include="css\Images\icon-ios7-arrow-left.png" />
+    <Content Include="css\Images\icon-ios7-arrow-right-white.png" />
+    <Content Include="css\Images\icon-ios7-arrow-right.png" />
+    <Content Include="css\Images\icons-18-black.png" />
+    <Content Include="css\Images\icons-18-white.png" />
+    <Content Include="css\Images\icons-36-black.png" />
+    <Content Include="css\Images\icons-36-white.png" />
+    <Content Include="css\Images\loading.gif" />
+    <Content Include="css\Images\movie_play.png" />
+    <Content Include="css\Images\new.png" />
+    <Content Include="css\Images\picture.png" />
+    <Content Include="css\Images\SavedStar.png" />
+    <Content Include="css\Images\title-bg.jpg" />
+    <Content Include="css\Images\ui-bg_diagonals-thick_90_eeeeee_40x40.png" />
+    <Content Include="css\Images\ui-bg_flat_15_cd0a0a_40x100.png" />
+    <Content Include="css\Images\ui-bg_glass_100_e4f1fb_1x400.png" />
+    <Content Include="css\Images\ui-bg_glass_50_3baae3_1x400.png" />
+    <Content Include="css\Images\ui-bg_glass_80_d7ebf9_1x400.png" />
+    <Content Include="css\Images\ui-bg_highlight-hard_100_f2f5f7_1x100.png" />
+    <Content Include="css\Images\ui-bg_highlight-hard_70_000000_1x100.png" />
+    <Content Include="css\Images\ui-bg_highlight-soft_100_deedf7_1x100.png" />
+    <Content Include="css\Images\ui-bg_highlight-soft_25_ffef8f_1x100.png" />
+    <Content Include="css\Images\ui-icons_2694e8_256x240.png" />
+    <Content Include="css\Images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="css\Images\ui-icons_3d80b3_256x240.png" />
+    <Content Include="css\Images\ui-icons_72a7cf_256x240.png" />
+    <Content Include="css\Images\ui-icons_ffffff_256x240.png" />
+    <Content Include="css\Images\undo.png" />
+    <Content Include="css\Images\video-13.png" />
+    <Content Include="css\Images\video.png" />
+    <Content Include="css\jquery-ui-1.8.22.custom.css" />
+    <Content Include="css\jquery-ui-1.8.22.custom.min.css" />
+    <Content Include="css\jquery-ui-1.8.24.custom.css" />
+    <Content Include="css\jquery-ui-1.8.24.custom.min.css" />
+    <Content Include="css\jquery.mCustomScrollbar.css" />
+    <Content Include="css\jquery.mobile.custom.structure.css" />
+    <Content Include="css\jquery.mobile.custom.structure.min.css" />
+    <Content Include="css\jquery.mobile.custom.theme.css" />
+    <Content Include="css\jquery.mobile.custom.theme.min.css" />
+    <Content Include="css\jquery.ui.tooltip.css" />
+    <Content Include="css\L10B.css" />
+    <Content Include="css\L10B.min.css" />
+    <Content Include="css\NewColaEBS.css" />
+    <Content Include="css\NewColaEBS.min.css" />
+    <Content Include="css\player-theme-ie6.css" />
+    <Content Include="css\player-theme-ie6.min.css" />
+    <Content Include="css\player-theme-ie7.css" />
+    <Content Include="css\player-theme-ie7.min.css" />
+    <Content Include="css\player-theme.css" />
+    <Content Include="css\player-theme.min.css" />
+    <Content Include="css\player.css" />
+    <Content Include="css\player.min.css" />
     <Content Include="css\video-js.css" />
+    <Content Include="js\animation\jquery-bubble-popup-v3.min.js" />
+    <Content Include="js\bootstrap.js" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\briefingPlayer.js" />
+    <Content Include="js\briefingPlayer.min.js" />
+    <Content Include="js\caption.js" />
+    <Content Include="js\caption.min.js" />
+    <Content Include="js\enscroll-0.5.5.min.js" />
+    <Content Include="js\enscroll-0.6.0.min.js" />
+    <Content Include="js\enscroll-test.js" />
+    <Content Include="js\html5shiv.js" />
+    <Content Include="js\jquery-1.9.1.js" />
+    <Content Include="js\jquery-1.9.1.min.js" />
+    <Content Include="js\jquery-ui-1.8.20.custom.js" />
+    <Content Include="js\jquery.autosize.min.js" />
+    <Content Include="js\jquery.colorbox-min.js" />
+    <Content Include="js\jquery.mCustomScrollbar.concat.min.js" />
     <Content Include="js\jquery.min.js" />
+    <Content Include="js\jquery.mobile.custom.js" />
+    <Content Include="js\jquery.mobile.custom.min.js" />
+    <Content Include="js\jquery.ui.datepicker-zh-TW.js" />
+    <Content Include="js\jquery.ui.tooltip.min.js" />
+    <Content Include="js\json2.js" />
+    <Content Include="js\json2.min.js" />
+    <Content Include="js\knockout-3.0.0.debug.js" />
+    <Content Include="js\knockout-3.0.0.js" />
+    <Content Include="js\L10B.js" />
+    <Content Include="js\L10B.min.js" />
+    <Content Include="js\manageQuestion.js" />
+    <Content Include="js\manageQuestion.min.js" />
+    <Content Include="js\player.js" />
+    <Content Include="js\player.min.js" />
+    <Content Include="js\player_old.js" />
+    <Content Include="js\question.js" />
+    <Content Include="js\question.min.js" />
+    <Content Include="js\respond.min.js" />
+    <Content Include="js\Silverlight.js" />
+    <Content Include="js\tempVideo.js" />
+    <Content Include="js\tempVideo.min.js" />
+    <Content Include="js\tourPlayer.js" />
+    <Content Include="js\tourPlayer.min.js" />
+    <Content Include="js\tourQuestion.js" />
+    <Content Include="js\tourQuestion.min.js" />
+    <Content Include="js\tourQuestionSingle.js" />
+    <Content Include="js\tourQuestionSingle.min.js" />
     <Content Include="js\video.js" />
-    <Content Include="mp4\oceans.mp4" />
+    <Content Include="js\vue.js" />
+    <Content Include="L10B01_BriefingPlayer.aspx" />
     <Content Include="Video.aspx" />
     <Content Include="Web.config" />
     <Content Include="WebForm1.aspx" />
     <Content Include="YouTubePlayer.aspx" />
+    <Content Include="YouTubePlayer2.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="L10B01_BriefingPlayer.aspx.cs">
+      <DependentUpon>L10B01_BriefingPlayer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="L10B01_BriefingPlayer.aspx.designer.cs">
+      <DependentUpon>L10B01_BriefingPlayer.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Video.aspx.cs">
       <DependentUpon>Video.aspx</DependentUpon>
@@ -99,8 +231,27 @@
     <Compile Include="YouTubePlayer.aspx.designer.cs">
       <DependentUpon>YouTubePlayer.aspx</DependentUpon>
     </Compile>
+    <Compile Include="YouTubePlayer2.aspx.cs">
+      <DependentUpon>YouTubePlayer2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YouTubePlayer2.aspx.designer.cs">
+      <DependentUpon>YouTubePlayer2.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="js\L10B.min.js.map" />
+    <Content Include="js\manageQuestion.min.js.map" />
+    <Content Include="js\player.min.js.map" />
+    <Content Include="js\question.min.js.map" />
+    <Content Include="js\tempVideo.min.js.map" />
+    <Content Include="js\tourPlayer.min.js.map" />
+    <Content Include="js\tourQuestion.min.js.map" />
+    <Content Include="js\tourQuestionSingle.min.js.map" />
+    <Content Include="js\bootstrap.min.js.map" />
+    <Content Include="js\briefingPlayer.min.js.map" />
+    <Content Include="js\caption.min.js.map" />
+    <Content Include="js\jquery-1.9.1.min.js.map" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -108,6 +259,9 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="mp4\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
