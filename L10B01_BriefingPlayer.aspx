@@ -188,19 +188,16 @@
                     </a>
                 </div>--%>
                 <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4 col-sm-pull-7 col-md-pull-8" id="slidebar" style="height: 100%; z-index: 1">
-
-                    <a href="#" v-on:click="TestMethod('yzrUSzkLQNU')" id="List_UnWatchVideo_cmdUnWatchVideo_0" data-video-id="MsbBBx-3HyI" class="list-group-item video new">yzrUSzkLQNU</a>
-                    <a href="#" v-on:click="TestMethod()"  data-video-id="MsbBBx-3HyI" class="list-group-item video new"><span data-user-id="Publish_User" class="colaUser">Publish_Name</span>：<span class="video-topic">Doc_Topic</span></a>
                     <div class="well well-sm">
                         <div class="panel-group playlist-container" style="position: relative; z-index: 0">
                             <div class="list-group video-group">
                                 <div class="list-group-item list-group-heading"><a class="list-group-heading-text" href="javascript://">未看完視訊簡報</a></div>
                                 <div class="list-group-content unwatch">
                                     <div>
-                                        <div class="list-group-item nodata">沒有未看完的視訊簡報</div>
+                                        <div class="list-group-item nodata" v-if="videoList === []">沒有未看完的視訊簡報</div>
                                     </div>
 
-                                    <div v-for="video in videoList">
+                                    <div v-for="video in videoListTemp">
                                         <a href="#" v-on:click="onYouTubePlayerAPIReady(video.Video_Id)"
                                             class="list-group-item video">
                                             <%--<span class="colaUser" data-user-id="{{video.Publish_User}}">{{video.Publish_Name}}</span>：--%>
@@ -208,7 +205,7 @@
                                             <span class="video-topic">{{video.Doc_Topic}}</span>
                                         </a>
                                     </div>
-                                    <a href="#" id="cmdMoreUnWatch" class="list-group-item text-center more" data-role="unwatch" runat="server">顯示更多</a>
+                                    <a href="#" id="cmdMoreUnWatch" class="list-group-item text-center more" data-role="unwatch" v-if="videoList !== videoListTemp" v-on:click.prevent="copyVideoListToTemp(0)">顯示更多</a>
                                 </div>
                             </div>
                             <div class="list-group video-group">
@@ -216,7 +213,7 @@
                                 <div class="list-group-content watched">
                                     <asp:ListView ID="List_WatchedVideo" runat="server">
                                         <EmptyDataTemplate>
-                                            <div class="list-group-item nodata">沒有看完的視訊簡報</div>
+                                            <div class="list-group-item nodata" >沒有看完的視訊簡報</div>
                                         </EmptyDataTemplate>
                                         <ItemTemplate>
                                             <a href="#" data-video-id='<%# Eval("Video_Id") %>' class="list-group-item video"><%# SetText_VideoTopic(Eval("Publish_User").ToString().Trim(), Eval("Publish_Name").ToString().Trim(), Eval("Doc_Topic").ToString().Trim()) %></a>
@@ -232,12 +229,17 @@
         </div>
         <input id="hdVideoData" type="hidden" runat="server" />
     </form>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script src="JS/knockout-3.0.0.js"></script>
     <script src="JS/jquery-1.9.1.min.js"></script>
     <script src="JS/L10B.min.js"></script>
     <script src="JS/vue.js"></script>
+    <script src="JS/axios.js"></script>
+    <script src="JS/vue-axios.min.js"></script>
     <script type="text/javascript">
-        //
+       
+
         // Replaces the 'ytplayer' element with an <iframe> and
         // YouTube player after the API code downloads.
         // https://developers.google.com/youtube/player_parameters
@@ -251,41 +253,12 @@
         new Vue({
             el: '#app',
             data: {
-                test: '這是本頁資料',
                 videoid:'',
-                /*
-                 * myVideoRow["Video_Id"] = "MsbBBx-3HyI";
-       myVideoRow["Publish_User"] = "Publish_User";
-       myVideoRow["Publish_Name"] = "Publish_Name";
-       myVideoRow["Doc_Topic"] = "Doc_Topic";
-       myVideoRow["Watch_Status"] = "";
-                 */
-                videoList: [
-                    {
-                        Video_Id: 'MsbBBx-3HyI',
-                        Publish_User: 'Publish_User',
-                        Publish_Name: 'Publish_Name',
-                        Doc_Topic: 'Doc_Topic',
-                        Watch_Status: ''
-                    },
-                    {
-                        Video_Id: '8O3teHziU_E',
-                        Publish_User: '測試',
-                        Publish_Name: '測試',
-                        Doc_Topic: 'Vue.js 教學 - 幼幼班入門篇 (上)',
-                        Watch_Status: ''
-                    },
-
-                ]
+                videoList: myData,
+                videoListTemp:[]
             },
             methods: {
-                TestMethod(videoid) {
-                    console.log('TestMethod', TestMethod);
-                    player.loadVideoById(TestMethod);
-                    // sessionStorage.setItem('key', 'MsbBBx-3HyI');
-                },
                 onYouTubePlayerAPIReady(videoid) {
-                    console.log('AA', videoid);
                     var self = this;
                     if (self.videoid != '') {
                         self.videoid = videoid;
@@ -307,59 +280,79 @@
                     }
                     player = new YT.Player(document.getElementById('ytplayer'), {
                         height: '390',
-                        width: '640',
+                        width: '100%',
                         playerVars: vars,
                         videoId: videoid,
                         events: {
-                            onReady: onPlayerReady,
-                            onStateChange: onPlayerStateChange
+                            onReady: self.onPlayerReady,
+                            onStateChange: self.onPlayerStateChange
                         }
                     });
+                },
+                onPlayerReady(event) {
+                    // 自動撥放影片
+                    event.target.playVideo();
+                },
+                onPlayerStateChange(event) {
+                    /*
+                     * 此事件在每次播放器的状态改变时触发。
+                     * API传递给事件监听器函数的事件对象的data属性会指定一个与新播放器状态相对应的整数。
+                     * 可能的值包括：
+                        -1（未开始）
+                        0（已结束）
+                        1（正在播放）
+                        2（已暂停）
+                        3（正在缓冲）
+                        5（视频已插入）
+                     */
+
+                    var self = this;
+                    // 偵測影片是否撥放完畢
+                    if (event.data === 0) {
+                        self.finishVideoMark();
+                    }
+                    // 偵測影片是否暫停
+                    else if (event.data === 2) {
+
+                    }
+                },
+                copyVideoListToTemp(cnt) {
+                    var self = this;
+                    if (cnt === 0) {
+                        self.videoListTemp = self.videoList;
+                    } else {
+                        self.videoList.forEach(function (item, index, array) {
+                            if (index < cnt) {
+                                self.videoListTemp.push(item);
+                            }
+                        });
+                    }
+                    console.log(self.videoListTemp);
+                },
+                finishVideoMark() {
+                    const api = 'https://localhost:44358/VideoDataHandel.asmx/completeVideo'
+                    const self = this;
+
+                    console.log(self.videoid);
+                    self.axios.post(api, { Video_Id: self.videoid })
+                        .then(function (response) {
+                            console.log(response);
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        })
+                        .then(function () {
+                            // always executed
+                        });
+                        
                 }
             },
+            created() {
+                this.copyVideoListToTemp(3);
+                this.finishVideoMark();
+            }
             
         })
-
-        // Load the IFrame Player API code asynchronously.
-     
-        /*
-        function onYouTubePlayerAPIReady() {
-            videosQueuedCount = 1;
-            var vars = {
-                autoplay: 0,
-                enablejsapi: 0,
-                controls: 1,
-                modestbranding: 1, // rel=0&autoplay=0&frameborder=0
-                rel: 0,
-                frameborder: 0,
-                fs: 0
-            }
-            player = new YT.Player('ytplayer', {
-                height: '390',
-                width: '640',
-                playerVars: vars,
-                videoId: '',
-                events: {
-                    onReady: onPlayerReady,
-                    onStateChange: onPlayerStateChange
-                }
-            });
-        }
-        */
-        // 自動撥放影片
-        function onPlayerReady(event) {
-            event.target.playVideo();
-        }
-
-        // 偵測影片是否撥放完畢
-        function onPlayerStateChange(event) {
-            if (event.data === 0) {
-                alert('done');
-            }
-        }
-        function Test2() {
-            console.log('HAA')
-        }
     </script>
 </body>
 </html>

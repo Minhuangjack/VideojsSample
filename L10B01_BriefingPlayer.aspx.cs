@@ -53,9 +53,45 @@ namespace VideojsSample
             myVideoRow["Watch_Status"] = "";
             myVideoListDT.Rows.Add(myVideoRow);
 
-        
+            myVideoRow = myVideoListDT.NewRow();
+            myVideoRow["Video_Id"] = "yzrUSzkLQNU";
+            myVideoRow["Publish_User"] = "A";
+            myVideoRow["Publish_Name"] = "B";
+            myVideoRow["Doc_Topic"] = "C";
+            myVideoRow["Watch_Status"] = "";
+            myVideoListDT.Rows.Add(myVideoRow);
+
+            myVideoRow = myVideoListDT.NewRow();
+            myVideoRow["Video_Id"] = "yzrUSzkLQNU";
+            myVideoRow["Publish_User"] = "D";
+            myVideoRow["Publish_Name"] = "E";
+            myVideoRow["Doc_Topic"] = "F";
+            myVideoRow["Watch_Status"] = "";
+            myVideoListDT.Rows.Add(myVideoRow);
+
+            string myVideoData = ConverDataTableToString(myVideoListDT);
+            // myVideoData = myVideoData.Substring(1, myVideoData.Length - 2);
+            Response.Write(myVideoData);
+            string myData = "var myData =" + myVideoData;
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "DataInit", myData, true);
         }
 
+        private string ConverDataTableToString(DataTable Data_Table) 
+        {
+            System.Web.Script.Serialization.JavaScriptSerializer serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+            List<Dictionary<string, object>> rows = new List<Dictionary<string, object>>();
+            Dictionary<string, object> row;
+            foreach (DataRow dr in Data_Table.Rows)
+            {
+                row = new Dictionary<string, object>();
+                foreach (DataColumn col in Data_Table.Columns)
+                {
+                    row.Add(col.ColumnName, dr[col]);
+                }
+                rows.Add(row);
+            }
+            return serializer.Serialize(rows);
+        }
 
         protected void List_UnWatchVideo_ItemDataBound(object sender, ListViewItemEventArgs e)
         {

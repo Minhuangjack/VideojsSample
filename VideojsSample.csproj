@@ -147,7 +147,10 @@
     <Content Include="css\player.css" />
     <Content Include="css\player.min.css" />
     <Content Include="css\video-js.css" />
+    <Content Include="Global.asax" />
     <Content Include="js\animation\jquery-bubble-popup-v3.min.js" />
+    <Content Include="js\axios.js" />
+    <Content Include="js\axios.min.js" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\briefingPlayer.js" />
@@ -193,15 +196,21 @@
     <Content Include="js\tourQuestionSingle.js" />
     <Content Include="js\tourQuestionSingle.min.js" />
     <Content Include="js\video.js" />
+    <Content Include="js\vue-axios.es5.js" />
+    <Content Include="js\vue-axios.min.js" />
     <Content Include="js\vue.js" />
     <Content Include="L10B01_BriefingPlayer.aspx" />
     <Content Include="Video.aspx" />
+    <Content Include="VideoDataHandel.asmx" />
     <Content Include="Web.config" />
     <Content Include="WebForm1.aspx" />
     <Content Include="YouTubePlayer.aspx" />
     <Content Include="YouTubePlayer2.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="L10B01_BriefingPlayer.aspx.cs">
       <DependentUpon>L10B01_BriefingPlayer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -216,6 +225,10 @@
     </Compile>
     <Compile Include="Video.aspx.designer.cs">
       <DependentUpon>Video.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VideoDataHandel.asmx.cs">
+      <DependentUpon>VideoDataHandel.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
@@ -252,6 +265,8 @@
     <Content Include="js\briefingPlayer.min.js.map" />
     <Content Include="js\caption.min.js.map" />
     <Content Include="js\jquery-1.9.1.min.js.map" />
+    <Content Include="js\axios.map" />
+    <Content Include="js\axios.min.map" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
