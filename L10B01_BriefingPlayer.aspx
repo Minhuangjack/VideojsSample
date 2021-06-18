@@ -7,46 +7,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>L10B01 視訊簡報個人播放清單</title>
-    <%--<script runat="server">
-        protected override void OnInit( EventArgs e )
-        {
-            if ( HttpContext.Current.Request.Url.Authority.Equals("ebs.colatour.com.tw", StringComparison.OrdinalIgnoreCase) )
-            {
-                if ( HttpContext.Current.Session["UserInfo"] != null )
-                {
-                    Cola.A000.BasisWeb.UserInfo UserInfo = (Cola.A000.BasisWeb.UserInfo)HttpContext.Current.Session["UserInfo"];
 
-                    Response.Redirect("https://ebsb.colatour.com.tw/A00A_Portal/A00A_Redir.aspx?ProgPath=" + HttpUtility.UrlEncode(Request.RawUrl) + "&ProgId=L10B01&UserId=" + UserInfo.User_Id + "&OrgCode=" + UserInfo.Org_Code + "&OrgName=" + HttpUtility.UrlEncode(UserInfo.Org_Name));
-                    HttpContext.Current.ApplicationInstance.CompleteRequest();
-                }
-            }
-            else
-            {
-                if ( HttpContext.Current.Session["UserInfo"] != null )
-                {
-                    Cola.A000.BasisWeb.UserInfo UserInfo = (Cola.A000.BasisWeb.UserInfo)HttpContext.Current.Session["UserInfo"];
-
-                    UserInfo.Login_IP = Request.ServerVariables["REMOTE_ADDR"].ToString().Trim();
-
-                    HttpContext.Current.Session["UserInfo"] = UserInfo;
-                }
-            }
-
-            base.OnInit(e);
-        }
-     
-    </script>--%>
     <link href="Css/bootstrap.min.css" rel="stylesheet" />
     <link href="Css/player.min.css?v=20140409" rel="stylesheet" />
     <link href="Css/briefing-player.min.css?v=20140409" rel="stylesheet" />
-    <!--[if lt IE 9]>
-      <script src="js/html5shiv.js"></script>
-      <script src="js/respond.min.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-      <script src="JS/json2.min.js"></script>
-      <link href="css/player-theme-ie7.css" rel="stylesheet" />
-    <![endif]-->
+
     <style>
         .navbar {
             width: auto;
@@ -70,123 +35,32 @@
                 <div id="rightContainer" class="col-xs-12 col-sm-7 col-md-8 col-lg-8 col-sm-push-5 col-md-push-4" style="z-index: 2">
                     <div id="itemContainer" class="play-fixed">
                         <div class="navbar-xs">
+
                             <div class="navbar navbar-default">
+
                                 <div class="navbar-header">
-                                    <button type="button" class="navbar-toggle" data-role="none" data-toggle="collapse" data-target=".navbar-collapse">
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                    </button>
-                                    <span class="navbar-brand video-topic" style="font-weight: bold">
-                                        <asp:Literal ID="ltlDocTopic" runat="server"></asp:Literal></span>
+                                    <h5>{{videoTitle}}</h5>
                                 </div>
-                                <div class="navbar-collapse collapse">
-                                    <div class="settings">
-                                        <ul class="nav navbar-nav navbar-right visible-xs">
-                                            <li><a data-role="subscribe" class="text-center" href="#">收藏</a></li>
-                                            <li><a data-role="finishwatch" class="text-center" href="#">完成觀看</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="settings pull-right" style="line-height: 30px;">
-                                        <div class="hidden-xs">
-                                            <a data-role="subscribe" class="btn btn-primary btn-xs" href="#">收藏</a>
-                                            <a data-role="finishwatch" class="btn btn-primary btn-xs" href="#">完成觀看</a>
-                                        </div>
-                                    </div>
+                                <div class="navbar-collapse">
+                                    <ul class="nav navbar-nav navbar-right" v-if="videoid !== ''">
+                                        <li>
+                                            <a class="btn btn-warning" href="#" role="button" v-on:click.prevent="saveVideoFavorite()">收藏</a>
+                                        </li>
+                                        <li>
+                                            <a class="btn btn-info" href="#" role="button" v-if="!invalid"  v-on:click.prevent="finishVideoMark()">完成觀看</a>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
                         <div class="well well-sm" style="z-index: 3; position: relative">
-                            <div class="player-message hide-def">
-                                <div class="alert alert-success" style="overflow: hidden">
-                                    <div class="row">
-                                        <div class="col-sm-12 col-md-8 col-lg-7 text">
-                                        </div>
-                                        <div class="col-sm-12 col-md-4 col-lg-5 option">
-                                            <input type="button" data-role="yes" class="btn btn-success btn-xs" value="是" />
-                                            <input type="button" data-role="no" class="btn btn-danger btn-xs" value="否，重新播放" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="video-memo-dialog hide-def" style="position: absolute; left: 50%; top: 12%; width: 50%">
-                                <div class="well well-sm" style="position: relative; left: -50%;">
-                                    <fieldset>
-                                        <legend style="font-size: 16px;">新增筆記</legend>
-                                        <div class="form-group">
-                                            <label class="control-label" for="txtVideoMemo">筆記內容</label>
-                                            <input type="text" id="txtVideoMemo" class="form-control input-group-sm col-lg-12" />
-                                            <span class="help-block invisible" style="height: 19px;"></span>
-                                        </div>
-                                        <div class="form-group text-right">
-                                            <input type="button" class="btn btn-default" value="取消" />
-                                            <input type="button" data-role="send" class="btn btn-primary" value="送出" />
-                                        </div>
-                                    </fieldset>
-                                </div>
-                            </div>
-                            <div class="video-question-dialog hide-def" style="position: absolute; left: 50%; top: 12%; width: 50%">
-                                <div class="well well-sm" style="position: relative; left: -50%;">
-                                    <fieldset>
-                                        <legend style="font-size: 16px;">影片發問</legend>
-                                        <div class="form-group">
-                                            <label class="control-label" for="txtQuestionContent">問題內容</label>
-                                            <textarea id="txtQuestionContent" class="form-control input-group-sm col-lg-12"></textarea>
-                                            <span class="help-block" style="height: 19px;"></span>
-                                        </div>
-                                        <div class="form-group text-right">
-                                            <input type="button" class="btn btn-default" value="取消" />
-                                            <input type="button" data-role="send" class="btn btn-primary" value="送出" />
-                                        </div>
-                                    </fieldset>
-                                </div>
-                            </div>
                             <div style="position: absolute; left: 50%; bottom: 90px;">
                                 <div class="video-memo-text"></div>
                             </div>
                             <div id="ytplayer"></div>
-                            <%--<div id="mediaPlayer" class="player">
-                            </div>--%>
-                            <%--<p class="text-center">數位學習播放器最佳瀏覽解析度為 1024 X 768 或以上</p>--%>
-                        </div>
-                    </div>
-                    <div class="tooltab hide-def">
-                        <ul class="nav nav-tabs" style="width: 100%;">
-                            <li class="active"><a href="#videosummary" data-role="tab">摘要</a></li>
-                            <li><a href="#videotext" data-role="tab">字幕</a></li>
-                            <li><a href="#videomemo" data-role="tab">筆記</a></li>
-                            <li><a href="#question" data-role="tab">Q&A<span data-bind="text: questionCount, visible: questions().length > 0"></span></a></li>
-                        </ul>
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="videosummary">
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-4 col-lg-3">
-                                        發行：<a href="javascript://" class="text-primary cola-user" data-role="cola-user" data-user-id=""></a>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-8 col-lg-3">
-                                        上架日期：<span id="online-time" class="online-time"></span>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-4 col-lg-2">
-                                        觀看人次：<span id="watch-nos" class="online-time"></span>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-8 col-lg-4">
-                                        最後觀看：<span id="last-watch-time" class="online-time"></span>
-                                    </div>
-                                </div>
-                                <p class="summary">
-                                </p>
-                            </div>
                         </div>
                     </div>
                 </div>
-                <%--<div class="col-xs-12 visible-xs">
-                    <a class="ui-btn ui-btn-icon-left btn btn-primary" style="position: static;" data-toggle="slidebar" href="javascript://">
-                        <span class="ui-btn-inner">
-                            <span class="ui-btn-text">視訊簡報列表</span>
-                            <span class="ui-icon ui-icon-shadow ui-icon-arrow-u">&nbsp;</span>
-                        </span>
-                    </a>
-                </div>--%>
                 <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4 col-sm-pull-7 col-md-pull-8" id="slidebar" style="height: 100%; z-index: 1">
                     <div class="well well-sm">
                         <div class="panel-group playlist-container" style="position: relative; z-index: 0">
@@ -194,32 +68,34 @@
                                 <div class="list-group-item list-group-heading"><a class="list-group-heading-text" href="javascript://">未看完視訊簡報</a></div>
                                 <div class="list-group-content unwatch">
                                     <div>
-                                        <div class="list-group-item nodata" v-if="videoList === []">沒有未看完的視訊簡報</div>
+                                        <div class="list-group-item nodata" v-if="videoList.length === 0">沒有未看完的視訊簡報</div>
                                     </div>
 
                                     <div v-for="video in videoListTemp">
-                                        <a href="#" v-on:click="onYouTubePlayerAPIReady(video.Video_Id)"
+                                        <a href="#" v-on:click="onYouTubePlayerAPIReady(video.Video_Id, video.Doc_Topic)"
                                             class="list-group-item video">
                                             <%--<span class="colaUser" data-user-id="{{video.Publish_User}}">{{video.Publish_Name}}</span>：--%>
-                                            <span class="colaUser" >{{video.Publish_Name}}</span>：
+                                            <span class="colaUser">{{video.Publish_Name}}</span>：
                                             <span class="video-topic">{{video.Doc_Topic}}</span>
                                         </a>
                                     </div>
-                                    <a href="#" id="cmdMoreUnWatch" class="list-group-item text-center more" data-role="unwatch" v-if="videoList !== videoListTemp" v-on:click.prevent="copyVideoListToTemp(0)">顯示更多</a>
+                                    <a href="#" id="cmdMoreUnWatch" class="list-group-item text-center more" data-role="unwatch" v-if="videoList !== videoListTemp && videoList.length > 0" v-on:click.prevent="copyVideoListToTemp('VideoList', 0)">顯示更多</a>
                                 </div>
                             </div>
                             <div class="list-group video-group">
                                 <div class="list-group-item list-group-heading"><a class="list-group-heading-text" href="javascript://">已看完視訊簡報</a></div>
                                 <div class="list-group-content watched">
-                                    <asp:ListView ID="List_WatchedVideo" runat="server">
-                                        <EmptyDataTemplate>
-                                            <div class="list-group-item nodata" >沒有看完的視訊簡報</div>
-                                        </EmptyDataTemplate>
-                                        <ItemTemplate>
-                                            <a href="#" data-video-id='<%# Eval("Video_Id") %>' class="list-group-item video"><%# SetText_VideoTopic(Eval("Publish_User").ToString().Trim(), Eval("Publish_Name").ToString().Trim(), Eval("Doc_Topic").ToString().Trim()) %></a>
-                                        </ItemTemplate>
-                                    </asp:ListView>
-                                    <a href="#" id="cmdMoreWatched" class="list-group-item text-center more" data-role="watched" runat="server">顯示更多</a>
+                                    <div>
+                                        <div class="list-group-item nodata" v-if="videoListComplete.length === 0">沒有看完的視訊簡報</div>
+                                    </div>
+                                    <div v-for="video in videoListCompleteTemp">
+                                        <a href="#" v-on:click="onYouTubePlayerAPIReady(video.Video_Id, video.Doc_Topic)"
+                                            class="list-group-item video">
+                                            <span class="colaUser">{{video.Publish_Name}}</span>：
+                                            <span class="video-topic">{{video.Doc_Topic}}</span>
+                                        </a>
+                                    </div>
+                                    <a href="#" id="cmdMoreWatched" class="list-group-item text-center more" data-role="unwatch" v-if="videoListComplete !== videoListCompleteTemp && videoListComplete.length > 0" v-on:click.prevent="copyVideoListToTemp('VideoListComplete', 0)">顯示更多</a>
                                 </div>
                             </div>
                         </div>
@@ -227,24 +103,19 @@
                 </div>
             </div>
         </div>
-        <input id="hdVideoData" type="hidden" runat="server" />
     </form>
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script src="JS/knockout-3.0.0.js"></script>
+
     <script src="JS/jquery-1.9.1.min.js"></script>
-    <script src="JS/L10B.min.js"></script>
     <script src="JS/vue.js"></script>
     <script src="JS/axios.js"></script>
     <script src="JS/vue-axios.min.js"></script>
     <script type="text/javascript">
-       
+
 
         // Replaces the 'ytplayer' element with an <iframe> and
         // YouTube player after the API code downloads.
         // https://developers.google.com/youtube/player_parameters
         var player;
-        var videosQueuedCount;
         var tag = document.createElement('script');
         tag.src = "https://www.youtube.com/player_api";
         var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -253,23 +124,29 @@
         new Vue({
             el: '#app',
             data: {
-                videoid:'',
-                videoList: myData,
-                videoListTemp:[]
+                videoid: '',
+                videoTitle: '',
+                videoList: myvideoList,
+                videoListTemp: [],
+                videoListComplete: myvideoListComplete,
+                videoListCompleteTemp: [],
+                invalid: true,
+                videoTimerCnt:0,
             },
             methods: {
-                onYouTubePlayerAPIReady(videoid) {
+                onYouTubePlayerAPIReady(videoid, Doc_Topic) {
                     var self = this;
+                    self.videoTitle = Doc_Topic;
+                    self.invalid = true;
                     if (self.videoid != '') {
                         self.videoid = videoid;
                         player.loadVideoById(videoid);
                         return;
                     }
-                    videosQueuedCount = 1;
                     var vars = {};
-                    
+
                     self.videoid = videoid;
-                    vars =  {
+                    vars = {
                         autoplay: 0,
                         enablejsapi: 0,
                         controls: 1,
@@ -313,27 +190,40 @@
                     }
                     // 偵測影片是否暫停
                     else if (event.data === 2) {
-
+                    }
+                        // 偵測影片是否正在播放
+                    else if (event.data === 1) {
                     }
                 },
-                copyVideoListToTemp(cnt) {
+                copyVideoListToTemp(List_Type, cnt) {
                     var self = this;
-                    if (cnt === 0) {
-                        self.videoListTemp = self.videoList;
+                    if (List_Type === 'VideoList') {
+                        if (cnt === 0) {
+                            self.videoListTemp = self.videoList;
+                        } else {
+                            self.videoList.forEach(function (item, index, array) {
+                                if (index < cnt) {
+                                    self.videoListTemp.push(item);
+                                }
+                            });
+                        }
                     } else {
-                        self.videoList.forEach(function (item, index, array) {
-                            if (index < cnt) {
-                                self.videoListTemp.push(item);
-                            }
-                        });
+                        if (cnt === 0) {
+                            self.videoListCompleteTemp = self.videoListComplete;
+                        } else {
+                            self.videoListComplete.forEach(function (item, index, array) {
+                                if (index < cnt) {
+                                    self.videoListCompleteTemp.push(item);
+                                }
+                            });
+                        }
                     }
-                    console.log(self.videoListTemp);
                 },
                 finishVideoMark() {
                     const api = 'https://localhost:44358/VideoDataHandel.asmx/completeVideo'
                     const self = this;
-
-                    console.log(self.videoid);
+                    self.invalid = false;
+                    // 傳送影片完成記號
                     self.axios.post(api, { Video_Id: self.videoid })
                         .then(function (response) {
                             console.log(response);
@@ -344,15 +234,30 @@
                         .then(function () {
                             // always executed
                         });
-                        
-                }
+                },
+                saveVideoFavorite() {
+                    const api = 'https://localhost:44358/VideoDataHandel.asmx/SaveVideoFavorite'
+                    const self = this;
+                    self.invalid = false;
+                    // 傳送影片完成記號
+                    self.axios.post(api, { Video_Id: self.videoid })
+                        .then(function (response) {
+                            console.log(response);
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        })
+                        .then(function () {
+                            // always executed
+                        });
+                },
             },
             created() {
-                this.copyVideoListToTemp(3);
-                this.finishVideoMark();
+                this.copyVideoListToTemp('VideoList', 3);
+                this.copyVideoListToTemp('VideoListComplete', 3);
             }
-            
         })
+
     </script>
 </body>
 </html>

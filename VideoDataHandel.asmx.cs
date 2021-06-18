@@ -31,5 +31,11 @@ namespace VideojsSample
             System.Diagnostics.EventLog.WriteEntry("Video_Id", Video_Id);
         }
 
+        [WebMethod]
+        public void SaveVideoFavorite(string Video_Id)
+        {
+            System.Diagnostics.EventLog.WriteEntry("Favorite", Video_Id);
+        }
+
     }
 }

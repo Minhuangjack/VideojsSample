@@ -13,14 +13,6 @@ namespace VideojsSample
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            /*
-             * 
-             * <a href="#" id="cmdUnWatchVideo" 
-             * data-video-id='<%# Eval("Video_Id") %>' 
-             * class="list-group-item video" runat="server">
-             * <%# SetText_VideoTopic(Eval("Publish_User").ToString().Trim(), 
-             * Eval("Publish_Name").ToString().Trim(), Eval("Doc_Topic").ToString().Trim()) %></a>
-            */
             DataTable myVideoListDT = new DataTable();
             DataRow myVideoRow;
             myVideoListDT.Columns.Add("Video_Id", typeof(string));
@@ -70,9 +62,9 @@ namespace VideojsSample
             myVideoListDT.Rows.Add(myVideoRow);
 
             string myVideoData = ConverDataTableToString(myVideoListDT);
-            // myVideoData = myVideoData.Substring(1, myVideoData.Length - 2);
-            Response.Write(myVideoData);
-            string myData = "var myData =" + myVideoData;
+
+            string myData = "var myvideoList =" + myVideoData + ";";
+            myData += "var myvideoListComplete = [];";
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "DataInit", myData, true);
         }
 
@@ -91,37 +83,6 @@ namespace VideojsSample
                 rows.Add(row);
             }
             return serializer.Serialize(rows);
-        }
-
-        protected void List_UnWatchVideo_ItemDataBound(object sender, ListViewItemEventArgs e)
-        {
-            if (e.Item.ItemType == ListViewItemType.DataItem)
-            {
-                // 未瀏覽影片（狀態＝空白）增加 new 圖示
-                HtmlAnchor cmdUnWatchVideo = (HtmlAnchor)e.Item.FindControl("cmdUnWatchVideo");
-                string myWatchStatus = ((DataRowView)e.Item.DataItem)["Watch_Status"].ToString().Trim();
-
-                if (myWatchStatus == "")
-                {
-                    cmdUnWatchVideo.Attributes["class"] += " new";
-                }
-                   
-
-            }
-        }
-
-        protected string SetText_VideoTopic(string Publish_User, string Publish_Name, string Doc_Topic)
-        {
-            string myReturn = "<span class=\"colaUser\" data-user-id=\"" + Publish_User + "\">" + Publish_Name + "</span>：";
-            myReturn += "<span class=\"video-topic\">" + Doc_Topic + "</span>";
-
-            return myReturn;
-        }
-
-        protected string SetText_VideoTopic(string Publish_User)
-        {
-            string myReturn = "<span class=\"video-topic\">" + Publish_User + "</span>";
-            return myReturn;
         }
     }
 }
