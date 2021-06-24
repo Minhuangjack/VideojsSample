@@ -6,9 +6,12 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>影片播放</title>
-    <link href=".\css\video-js.css" rel="stylesheet">
+    <%--<link href=".\css\video-js.css" rel="stylesheet">--%>
+    <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
     <script src=".\js\jquery.min.js"></script>
-    <script src=".\js\video.js"></script>
+    <%--<script src=".\js\video.js"></script>--%>
+    <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
+    
 </head>
 <body>
     <form id="form1" runat="server">
@@ -37,14 +40,22 @@
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     //設置請求结果類型为blob
     xhr.responseType = 'blob';
-    var myVideoId = '<%=cvVideoid%>'
+    var myVideoId = 'test.m3u8';
+    // var myVideoId = 'ssss.mp4';
+
     var url = "VideoId=" + myVideoId;
+    var blob;
+    var binary;
+    var getresponse;
     //請求成功回调函數
     xhr.onload = function (e) {
+        console.log(this);
+        getresponse = this;
         if (this.status == 200) {//請求成功
             //獲取blob對象
-            var blob = this.response;
-
+            blob = this.response;
+            console.log(blob);
+            // binary = convertDataURIToBinary(this.response)
             //獲取blob對象地址，并把值赋给容器
              videojs(document.getElementById('video_player'), {
                 controls: true, // 是否顯示控制條
@@ -84,8 +95,12 @@
                 },
                 sources: [ // 視頻源
                     {
-                        src: window.URL.createObjectURL(blob), //'test.mp4',
-                        type: 'video/mp4',
+                        // src: window.URL.createObjectURL(blob), //'test.mp4',
+                        src: blob, //'test.mp4',
+                        //src: 'mp4/test.m3u8', //'mp4/test.m3u8',
+                        //type: 'application/x-mpegURL',
+                        //type: 'video/mp4',
+                        type: 'application/vnd.apple.mpegurl',
                         poster: ''
                     }
                 ]
@@ -98,6 +113,9 @@
         window.URL.revokeObjectURL(url);
     }
 
+    function BinToText(bin) {
+        return parseInt(bin, 2).toString(10);
+    }
 
 </script>
 </body>

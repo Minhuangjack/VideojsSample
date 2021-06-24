@@ -20,6 +20,7 @@ namespace VideojsSample
         {
             string myVideoId = "";
             string httpMethod = Server.HtmlEncode(Request.RequestType);
+            /*
             // 禁止使用 POST 以外的方式進入
             if (httpMethod.ToUpper() != "POST")
             {
@@ -35,13 +36,16 @@ namespace VideojsSample
             {
                 return;
             }
-
+            */
             // 讀取檔案路徑
-            string filePath = this.Server.MapPath("~/mp4/" + myVideoId);
+            // string filePath = this.Server.MapPath("~/mp4/" + myVideoId);
+            string filePath = this.Server.MapPath("~/mp4/test.m3u8");
             // 讀取檔案
             var fileName = Path.GetFileName(filePath);
             this.Response.ClearHeaders();
             this.Response.ContentType = "application/octet-stream";
+            //this.Response.ContentType = "application/vnd.apple.mpegurl";
+
             this.Response.AppendHeader("Content-Disposition", "attachment; filename=" + fileName);
             this.Response.BinaryWrite(System.IO.File.ReadAllBytes(filePath));
             this.Response.End();

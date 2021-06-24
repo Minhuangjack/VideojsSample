@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.31019.35
+VisualStudioVersion = 16.0.31402.337
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideojsSample", "VideojsSample.csproj", "{60B2754B-898C-4B59-A5DF-1011FB352E0E}"
 EndProject
@@ -20,6 +20,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {5C0A6CDA-AFE5-4030-96F5-D662B9A52916}
+		SolutionGuid = {5621C7F7-76BF-4BFB-A2DA-23F32B07E1B3}
 	EndGlobalSection
 EndGlobal
