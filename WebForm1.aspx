@@ -9,8 +9,8 @@
     <%--<link href=".\css\video-js.css" rel="stylesheet">--%>
     <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
     <script src=".\js\jquery.min.js"></script>
-    <%--<script src=".\js\video.js"></script>--%>
-    <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
+    <script src=".\js\video.js"></script>
+    <%--<script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>--%>
     
 </head>
 <body>
@@ -95,11 +95,12 @@
                 },
                 sources: [ // 視頻源
                     {
-                        // src: window.URL.createObjectURL(blob), //'test.mp4',
-                        src: blob, //'test.mp4',
+                        src: window.URL.createObjectURL(blob), //'test.mp4',
+                        // src: 'https://localhost:44358/mp4/test.m3u8', //'test.mp4',
+                        // src: 'mp4/ssss.mp4', //'test.mp4',
                         //src: 'mp4/test.m3u8', //'mp4/test.m3u8',
-                        //type: 'application/x-mpegURL',
-                        //type: 'video/mp4',
+                        type: 'application/x-mpegURL',
+                        // type: 'video/mp4',
                         type: 'application/vnd.apple.mpegurl',
                         poster: ''
                     }

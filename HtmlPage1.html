@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <title>Document</title>
+</head>
+
+<body>
+    <video id="video" controls></video>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script>
+        var manifest = '#EXTM3U #EXT - X - VERSION: 3 #EXT - X - TARGETDURATION: 12 #EXT - X - MEDIA - SEQUENCE: 0 #EXTINF: 10.803178,             test0.ts #EXTINF: 11.595689,             test1.ts #EXTINF: 8.342222,             test2.ts #EXTINF: 11.512267,             test3.ts #EXTINF: 4.296244,             test4.ts #EXT - X - ENDLIST'; 
+        // var manifest = 'mp4/test.m3u8';
+    var video = document.getElementById('video');
+
+    var blob = new Blob([manifest]);
+
+    var hls = new Hls();
+    var url = URL.createObjectURL(blob);
+    hls.loadSource(url);
+    hls.attachMedia(video);
+    hls.on(Hls.Events.MANIFEST_PARSED, function() {
+      video.play();
+    });
+    </script>
+</body>
+
+</html>

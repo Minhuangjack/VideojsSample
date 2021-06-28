@@ -151,6 +151,7 @@
     <Content Include="css\video-js.css" />
     <Content Include="Example01.html" />
     <Content Include="Global.asax" />
+    <Content Include="HtmlPage1.html" />
     <Content Include="js\animation\jquery-bubble-popup-v3.min.js" />
     <Content Include="js\axios.js" />
     <Content Include="js\axios.min.js" />
@@ -204,11 +205,13 @@
     <Content Include="js\vue.js" />
     <Content Include="L10B01_BriefingPlayer.aspx" />
     <Content Include="m3u8Player.html" />
+    <Content Include="mp4Test.html" />
     <Content Include="UpCourse.aspx" />
     <Content Include="Video.aspx" />
     <Content Include="VideoDataHandel.asmx" />
     <Content Include="Web.config" />
     <Content Include="WebForm1.aspx" />
+    <Content Include="WebFormwithIframe.aspx" />
     <Content Include="YouTubePlayer.aspx" />
     <Content Include="YouTubePlayer2.aspx" />
   </ItemGroup>
@@ -249,6 +252,13 @@
     </Compile>
     <Compile Include="WebForm1.aspx.designer.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebFormwithIframe.aspx.cs">
+      <DependentUpon>WebFormwithIframe.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebFormwithIframe.aspx.designer.cs">
+      <DependentUpon>WebFormwithIframe.aspx</DependentUpon>
     </Compile>
     <Compile Include="YouTubePlayer.aspx.cs">
       <DependentUpon>YouTubePlayer.aspx</DependentUpon>

@@ -38,8 +38,8 @@ namespace VideojsSample
             }
             */
             // 讀取檔案路徑
-            // string filePath = this.Server.MapPath("~/mp4/" + myVideoId);
-            string filePath = this.Server.MapPath("~/mp4/test.m3u8");
+            string filePath = this.Server.MapPath("~/mp4/test.m3u8" + myVideoId);
+            // string filePath = "https://localhost:44358/mp4/test.m3u8";
             // 讀取檔案
             var fileName = Path.GetFileName(filePath);
             this.Response.ClearHeaders();
