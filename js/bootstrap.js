@@ -241,7 +241,8 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap requires jQuery"
     return this.each(function () {
       var $this   = $(this)
       var data    = $this.data('bs.button')
-      var options = typeof option == 'object' && option
+
+          = typeof option == 'object' && option
 
       if (!data) $this.data('bs.button', (data = new Button(this, options)))
 

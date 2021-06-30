@@ -38,7 +38,16 @@ namespace VideojsSample
             }
             */
             // 讀取檔案路徑
-            string filePath = this.Server.MapPath("~/mp4/test.m3u8" + myVideoId);
+            // string filePath = this.Server.MapPath("~/mp4/test.m3u8" + myVideoId);
+            // string filePath = this.Server.MapPath("~/mp4/prog_index.m3u8" + myVideoId);
+            if (Request.Form["VideoId"] != null)
+            {
+                myVideoId = Request.Form["VideoId"].ToString();
+            }
+            System.Diagnostics.EventLog.WriteEntry("AA", "AA");
+            System.Diagnostics.EventLog.WriteEntry("myVideoId", myVideoId);
+            string filePath = this.Server.MapPath("~/mp4/" + myVideoId);
+            System.Diagnostics.EventLog.WriteEntry("myVideoId", myVideoId);
             // string filePath = "https://localhost:44358/mp4/test.m3u8";
             // 讀取檔案
             var fileName = Path.GetFileName(filePath);

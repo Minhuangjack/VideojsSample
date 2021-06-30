@@ -39,22 +39,26 @@
     
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     //設置請求结果類型为blob
-    xhr.responseType = 'blob';
+    xhr.responseType = 'text';
     var myVideoId = 'test.m3u8';
     // var myVideoId = 'ssss.mp4';
 
     var url = "VideoId=" + myVideoId;
-    var blob;
+    var m3u8text;
     var binary;
     var getresponse;
     //請求成功回调函數
+    console.log('xhr local', xhr);
     xhr.onload = function (e) {
         console.log(this);
         getresponse = this;
         if (this.status == 200) {//請求成功
             //獲取blob對象
-            blob = this.response;
-            console.log(blob);
+            m3u8text = this.response;
+            console.log(m3u8text);
+            blob = new Blob([m3u8text]
+                , { type: "application/x-mpegurl" });
+            var src = URL.createObjectURL(blob);
             // binary = convertDataURIToBinary(this.response)
             //獲取blob對象地址，并把值赋给容器
              videojs(document.getElementById('video_player'), {
@@ -95,13 +99,13 @@
                 },
                 sources: [ // 視頻源
                     {
-                        src: window.URL.createObjectURL(blob), //'test.mp4',
+                        src: src, //'test.mp4',
                         // src: 'https://localhost:44358/mp4/test.m3u8', //'test.mp4',
                         // src: 'mp4/ssss.mp4', //'test.mp4',
                         //src: 'mp4/test.m3u8', //'mp4/test.m3u8',
-                        type: 'application/x-mpegURL',
+                        // type: 'application/x-mpegURL',
                         // type: 'video/mp4',
-                        type: 'application/vnd.apple.mpegurl',
+                         type: 'application/vnd.apple.mpegurl',
                         poster: ''
                     }
                 ]
